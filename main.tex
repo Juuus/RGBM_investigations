@@ -46,8 +46,8 @@
 %\usepackage[justification=centering]{caption}
 %\captionsetup[table]{format=plain,labelformat=simple,labelsep=period,singlelinecheck=true}%
 
-%\bibliographystyle{unsrtnat}
-\bibliographystyle{aea}
+\bibliographystyle{unsrtnat}
+%\bibliographystyle{aea}
 \usepackage{enumitem}
 \usepackage{tikz}
 \usetikzlibrary{decorations.pathreplacing}
@@ -329,7 +329,7 @@ As can be seen from equation~(\ref{eq:rgbm}), the model does not account for a l
 
 The mathematical properties of RGBM when $\tau \geq 0$ are rather known. In particular, for $\tau > \frac{\sigma^2}{2}$ the model is ergodic and exhibits mean-reversion. Each $x_i$ reverts to the population average $\langle x \rangle_N$. The large population approximation $\langle x(t) \rangle_N = \exp \left[\mu t\right]$ is valid, and rescaled wealth $y_i = x_i / \langle x \rangle_N$ has a stationary probability distribution, %The stationary distribution reads
 \begin{align}
-    p(y) &= \frac{(\theta - 1)^{\theta}}{\Gamma(\theta)} \exp{\big(-\frac{\theta - 1}{y}\big)} y^{-(1+\theta)},
+    P_y(y) &= \frac{(\theta - 1)^{\theta}}{\Gamma(\theta)} \exp{\big(-\frac{\theta - 1}{y}\big)} y^{-(1+\theta)},
     \label{eq:stationary-distributin}
 \end{align}
 where $\theta = 1 + \frac{2 \tau}{\sigma^2}$ and $\Gamma(\cdot)$ is the Gamma function.
@@ -372,10 +372,32 @@ Fig.~\ref{fig:rgbm-ineq-mobility} confirms the stationary dynamics of these two 
 \includegraphics[width=10cm]{figs/fig0.eps}
 \caption{Immobility and inequality in RGBM. \underline{\textbf{Scatter lines:}} Numerical estimation for the inequality and immobility, measured respectively via Eqs.~(\ref{eq:rgbm-var}) and~(\ref{eq:rgbm-mobility}), in a simulation or RGBM. The inset plot give the analytical relationship between inequality and mobility in RGBM, i.e. the Great Gatsby curve. \underline{\textbf{Parameters:}} We set $\mu = 0.021$, $\sigma^2 = 0.01$ and $N = 10^5$. The initial condition $x_i(0) = 1$ for all $i$.\label{fig:rgbm-ineq-mobility}}
 \end{figure*}
+edit
+\section{Conclusion}\label{sec:conclusion}
+
+\bibliography{../LML_bibliography/bibliography}
 
 
+\appendix
+\section{Derivation of IEE in RGBM}
 
-\bibliography{../../LML_bibliography/bibliography}
+As a measure, the intergenerational earnings elasticity is determined by the dynamics of the log of (rescaled) wealth $z = \log(y)$. Using Ito calculus, we can recover the following equation for the dynamics of $z$,
+\begin{align*}
+    d z &= \tau \bigg( \exp(-z) - \frac{2\tau + \sigma^2}{2 \tau} \bigg) dt + \sigma dW.
+\end{align*}
+
+The stationary distribution of the process can be found by using the transformation law of probabilities, 
+\begin{align}
+    P_z(z) &= P_y\big(\exp(z)\big) \exp(z).
+\end{align}
+
+The first and second moment of this distribution are
+\begin{align}
+\langle z \rangle &= -\psi(\theta) + \log(\theta - 1), \\
+\langle z^2 \rangle &= \psi^{(1)}(\theta) + \bigg( \psi^{(1)}(\theta) - \log(\theta-1)\bigg)^2.
+\end{align}
+
+See Dutre and Debosscher (1977) and Debosscher (1990) for the derivation of the transitory PDF of both $y$ and $z$.
 
 %\clearpage
 %\appendix
